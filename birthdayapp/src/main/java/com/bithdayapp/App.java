@@ -66,12 +66,12 @@ public class App
      * extra credit module on Files, Directories, and Folders in Canvas.
      */
     String pathToFile =
-      "C:/Users/jerom/Documents/GitHub/class-java/birthday-lupita-lookup-app/lupita/src/main/java/com/example/birthday.json";
+      "/Users/myrzabekrustamov/Documents/JavaVSCode/BirthdayApp/birthdayapp/birthday.json";
 
     JSONArray jsonData = readJSONArrayFile(pathToFile);
 
     // loop over list
-    String birthday;
+    String birthday = null;
     JSONObject obj;
     for (Integer i = 0; i < jsonData.size(); i++) {
       // parse the object and pull out the name and birthday
@@ -80,6 +80,11 @@ public class App
       name = (String) obj.get("name");
       // System.out.println("name = " + name);
       // System.out.println("birthday = " + birthday);
+    }
+    if (birthday != null) {
+      System.out.println(birthday);
+    } else {
+      System.out.println("There is no such person.");
     }
   }
 }
