@@ -47,7 +47,7 @@ public class App
 
     // get user input
     Scanner input = new Scanner(System.in);
-    System.out.print("Enter a name:");
+    System.out.print("Enter a name: ");
     String name = input.nextLine();
 
     // print user input
@@ -70,21 +70,28 @@ public class App
 
     JSONArray jsonData = readJSONArrayFile(pathToFile);
 
+    // Creating Hash-Map
+    HashMap<String, String> hashMap = new HashMap<>();
+
     // loop over list
-    String birthday = null;
+    String birthdayString = "There is no such person";
+    String personName;
     JSONObject obj;
+
     for (Integer i = 0; i < jsonData.size(); i++) {
       // parse the object and pull out the name and birthday
       obj = (JSONObject) jsonData.get(i);
-      birthday = (String) obj.get("birthday");
-      name = (String) obj.get("name");
+      String birthday = (String) obj.get("birthday");
+      personName = (String) obj.get("name");
       // System.out.println("name = " + name);
       // System.out.println("birthday = " + birthday);
+      hashMap.put(personName, birthday);
     }
-    if (birthday != null) {
-      System.out.println(birthday);
-    } else {
-      System.out.println("There is no such person.");
+    for (Map.Entry<String, String> set : hashMap.entrySet()) {
+      if (set.getKey().equals(name)) {
+        birthdayString = set.getValue();
+      }
     }
+    System.out.println(birthdayString);
   }
 }
